@@ -193,7 +193,8 @@ namespace BLESenderApp
             string text = Guid.NewGuid().ToString().Substring(0, 8);
             var writer = new DataWriter();
             writer.WriteString(text);
-            await writeCharacteristic.WriteValueAsync(writer.DetachBuffer());
+            //await writeCharacteristic.WriteValueAsync(writer.DetachBuffer());
+            await writeCharacteristic.WriteValueAsync(writer.DetachBuffer(), GattWriteOption.WriteWithoutResponse);
             statusLabel.Text = $"Sent: {text}";
         }
 
@@ -214,7 +215,8 @@ namespace BLESenderApp
 
             var writer = new DataWriter();
             writer.WriteString(text);
-            await writeCharacteristic.WriteValueAsync(writer.DetachBuffer());
+            //await writeCharacteristic.WriteValueAsync(writer.DetachBuffer());
+            await writeCharacteristic.WriteValueAsync(writer.DetachBuffer(), GattWriteOption.WriteWithoutResponse);
             statusLabel.Text = $"Sent: {text.Replace("\n", " ").Replace("\r", "")}";
         }
     }
