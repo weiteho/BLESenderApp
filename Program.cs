@@ -165,7 +165,8 @@ namespace BLESenderApp
                 foreach (var ch in charResult.Characteristics)
                 {
                     if (ch.Uuid == writeCharacteristicUuid &&
-                        ch.CharacteristicProperties.HasFlag(GattCharacteristicProperties.Write))
+                        (ch.CharacteristicProperties.HasFlag(GattCharacteristicProperties.Write)
+                        || ch.CharacteristicProperties.HasFlag(GattCharacteristicProperties.WriteWithoutResponse)))
                     {
                         writeCharacteristic = ch;
                         break;
